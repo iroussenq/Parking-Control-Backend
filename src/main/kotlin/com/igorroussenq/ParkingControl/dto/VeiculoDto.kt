@@ -22,7 +22,7 @@ data class VeiculoCreateDto(
     @field:NotNull(message = "Data de entrada é obrigatória")
     val dataEntrada: LocalDateTime,
 
-    val mensalistaId: UUID? = null
+    val mensalistaCpf: String? = null
 )
 
 data class VeiculoUpdateDto(
