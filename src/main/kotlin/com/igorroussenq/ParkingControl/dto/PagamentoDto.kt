@@ -17,7 +17,7 @@ data class PagamentoCreateDto(
 
     @field:DecimalMin(value = "0.0", inclusive = false, message = "Tarifa deve ser maior que zero")
     @field:Digits(integer = 8, fraction = 2, message = "Tarifa deve ter no máximo 8 dígitos inteiros e 2 decimais")
-    val tarifa: BigDecimal? = null
+    val tarifaMeiaHora: BigDecimal
 )
 
 data class PagamentoUpdateDto(

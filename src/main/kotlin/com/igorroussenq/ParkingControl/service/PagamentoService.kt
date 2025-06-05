@@ -8,7 +8,9 @@ import com.igorroussenq.ParkingControl.domain.Pagamento
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.math.BigDecimal
 import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 import java.util.UUID
 
 @Service
@@ -26,11 +28,21 @@ class PagamentoService(
         val veiculo = veiculoRepository.findByIdOrNull(dto.veiculoId)
             ?: throw NoSuchElementException("Veículo não encontrado")
 
+        // Cálculo do tempo de permanência usando LocalDateTime
+        val tempoPermaneciaNanosegundos = ChronoUnit.NANOS.between(veiculo.dataEntrada, dto.tempoSaida)
+        val tempoPermaneciaMintutos = tempoPermaneciaNanosegundos / (1_000_000_000L * 60L)
+
+        // Calcula quantos períodos de meia hora (30 min), sempre arredondando para cima
+        val periodosDeMeiaHora = kotlin.math.ceil(tempoPermaneciaMintutos.toDouble() / 30.0).toInt()
+
+        // Calcula a tarifa final
+        val tarifa = dto.tarifaMeiaHora.multiply(BigDecimal(periodosDeMeiaHora))
+
         val pagamento = Pagamento(
             mensalista = mensalista,
             veiculo = veiculo,
             tempoSaida = dto.tempoSaida,
-            tarifa = dto.tarifa
+            tarifa = tarifa
         )
 
         val saved = pagamentoRepository.save(pagamento)
