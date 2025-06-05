@@ -29,7 +29,7 @@ data class PagamentoUpdateDto(
 )
 
 data class PagamentoResponseDto(
-    val id: UUID,
+    val id: UUID?,
     val mensalista: MensalistaResponseDto,
     val veiculo: VeiculoResponseDto,
     val tempoSaida: LocalDateTime,

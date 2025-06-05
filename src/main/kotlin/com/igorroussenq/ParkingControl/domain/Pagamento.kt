@@ -10,8 +10,8 @@ import java.util.*
 @Table(name = "pagamentos")
 data class Pagamento(
     @Id
-    @Column(name = "id")
-    val id: UUID = UUID.randomUUID(),
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mensalista_id", nullable = false)

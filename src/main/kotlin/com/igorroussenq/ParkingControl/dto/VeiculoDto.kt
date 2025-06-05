@@ -41,7 +41,7 @@ data class VeiculoUpdateDto(
 )
 
 data class VeiculoResponseDto(
-    val id: UUID,
+    val id: UUID?,
     val nome: String,
     val placa: String,
     val ano: Int,
