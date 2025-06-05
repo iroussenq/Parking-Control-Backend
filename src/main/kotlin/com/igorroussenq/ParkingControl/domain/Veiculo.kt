@@ -12,8 +12,8 @@ import java.util.*
 @Table(name = "veiculos")
 data class Veiculo(
     @Id
-    @Column(name = "id")
-    val id: UUID = UUID.randomUUID(),
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
 
     @Column(name = "nome", nullable = false, length = 50)
     val nome: String,

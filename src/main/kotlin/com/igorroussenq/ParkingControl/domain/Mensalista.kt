@@ -10,8 +10,8 @@ import java.util.*
 @Table(name = "mensalistas")
 data class Mensalista(
     @Id
-    @Column(name = "id")
-    val id: UUID = UUID.randomUUID(),
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
 
     @Column(name = "nome", nullable = false, length = 100)
     val nome: String,
@@ -20,13 +20,13 @@ data class Mensalista(
     val dataDeNascimento: LocalDate,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_mensalista", nullable = false)
+    @Column(name = "status_mensalista", nullable = false, length = 20)
     val statusMensalista: StatusMensalistaEnum,
 
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     val cpf: String,
 
-    @Column(name = "idade")
+    @Column(name = "idade", length = 10)
     val idade: String? = null,
 
     @Column(name = "documento_valido")

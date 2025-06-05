@@ -44,7 +44,7 @@ data class MensalistaUpdateDto(
 )
 
 data class MensalistaResponseDto(
-    val id: UUID,
+    val id: UUID?,
     val nome: String,
     val dataDeNascimento: LocalDate,
     val statusMensalista: StatusMensalistaEnum,
