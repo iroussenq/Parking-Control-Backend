@@ -21,8 +21,8 @@ class VeiculoService(
             throw IllegalArgumentException("Placa já cadastrada")
         }
 
-        val mensalista = dto.mensalistaId?.let {
-            mensalistaRepository.findByIdOrNull(it)
+        val mensalista = dto.mensalistaCpf?.let {
+            mensalistaRepository.findByCpf(it)
                 ?: throw NoSuchElementException("Mensalista não encontrado")
         }
 
