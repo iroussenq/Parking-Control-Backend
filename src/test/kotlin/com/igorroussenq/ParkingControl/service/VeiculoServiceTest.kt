@@ -43,8 +43,7 @@ class VeiculoServiceTest {
             placa = "ABC1234",
             nome = "Modelo Exemplo",
             ano = 2021,
-            dataEntrada = LocalDateTime.now(),
-            mensalistaId = mensalistaId
+            dataEntrada = LocalDateTime.now()
         )
         val veiculoMock = Veiculo(
             id = UUID.randomUUID(),
